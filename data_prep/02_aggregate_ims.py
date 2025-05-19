@@ -19,15 +19,5 @@ sc = xr.where((ds['sc']!=2)&(ds['sc']!=4),np.nan,ds['sc'])
 sc = xr.where(sc==4,1,sc)
 sc = xr.where(sc==2,0,sc)
 
-# sc_clim = sc.groupby("time.dayofyear")
-# wy_sc = sc.resample(time='AS-OCT').count()
-# wy_sc.to_netcdf(os.path.join(project_dir,'data','processed','ims_24km','wy_sc.nc'))
-
-# djf_sc = sc.where(sc['time.season']=='DJF').resample(time='AS-OCT').count()
-# djf_sc.to_netcdf(os.path.join(project_dir,'data','processed','ims_24km','djf_sc.nc'))
-
-# ndjfm_sc = sc.where((sc['time.month']>=11)|(sc['time.month']<=3)).resample(time='AS-OCT').count()
-# ndjfm_sc.to_netcdf(os.path.join(project_dir,'data','processed','ims_24km','ndjfm_sc.nc'))
-
-mon_sc = sc.resample(time='1M').count()
-mon_sc.to_netcdf(os.path.join(project_dir,'data','processed','ims_24km','mon_sc.nc'))
+wy_sc = sc.resample(time='AS-OCT').count()
+wy_sc.to_netcdf(os.path.join(project_dir,'data','processed','ims_24km','wy_sc.nc'))
